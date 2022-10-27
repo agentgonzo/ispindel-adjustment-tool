@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ispindel-adjustment-tool/static/css/main.b9c7cb27.css",
-    "main.js": "/ispindel-adjustment-tool/static/js/main.e71be64d.js",
+    "main.js": "/ispindel-adjustment-tool/static/js/main.4401f926.js",
     "index.html": "/ispindel-adjustment-tool/index.html",
     "main.b9c7cb27.css.map": "/ispindel-adjustment-tool/static/css/main.b9c7cb27.css.map",
-    "main.e71be64d.js.map": "/ispindel-adjustment-tool/static/js/main.e71be64d.js.map"
+    "main.4401f926.js.map": "/ispindel-adjustment-tool/static/js/main.4401f926.js.map"
   },
   "entrypoints": [
     "static/css/main.b9c7cb27.css",
-    "static/js/main.e71be64d.js"
+    "static/js/main.4401f926.js"
   ]
 }
