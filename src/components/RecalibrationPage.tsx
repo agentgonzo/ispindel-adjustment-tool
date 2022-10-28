@@ -60,10 +60,12 @@ const RecalibrationForm: FC<IProps> = ({onChangeOriginalPolynomial, onChangeCorr
   }
 
   useEffect(() => {
-    onChangeOriginalPolynomial(fromTiltFormula(existingFormula))
-    onChangeCorrectedPolynomial(correctedPolynomial)
-    onChangeGravities(iSpindelOG, iSpindelFG)
-  }, [existingFormula, hydrometerOG, hydrometerFG, iSpindelOG, iSpindelFG, correctedPolynomial, onChangeOriginalPolynomial, onChangeCorrectedPolynomial, onChangeGravities])
+      onChangeOriginalPolynomial(fromTiltFormula(existingFormula))
+      onChangeCorrectedPolynomial(correctedPolynomial)
+      onChangeGravities(iSpindelOG, iSpindelFG)
+    },
+    // eslint-disable-next-line
+    [existingFormula, iSpindelOG, iSpindelFG, hydrometerOG, hydrometerFG])
 
   return <>
     <Form noValidate validated={true}>

@@ -21,30 +21,32 @@ export const MyGraph: FC<IProps> = ({originalPolynomial, correctedPolynomial, or
   const [correctedFGPoint, setCorrectedFGPoint] = useState(null as any)
 
   useEffect(() => {
-      try {
-        if (originalCurve && originalPolynomial) {
-          originalCurve.Y = (tilt: number) => originalPolynomial.eval(tilt)
-          originalCurve.updateCurve()
-        }
-        if (correctedCurve && correctedPolynomial) {
-          correctedCurve.Y = (tilt: number) => correctedPolynomial.eval(tilt)
-          correctedCurve.updateCurve()
-        }
-        if (originalGravity) {
-          const tilt = findTiltForGravity(originalPolynomial, originalGravity)
-          originalOGPoint.moveTo([tilt, originalGravity])
-          correctedPolynomial && correctedOGPoint.moveTo([tilt, correctedPolynomial.eval(tilt)])
-        }
-        if (finalGravity) {
-          const tilt = findTiltForGravity(originalPolynomial, finalGravity)
-          originalFGPoint.moveTo([tilt, finalGravity])
-          correctedPolynomial && correctedFGPoint.moveTo([tilt, correctedPolynomial.eval(tilt)])
-        }
-        if (board) {
+      if (board) {
+        board.suspendUpdate()
+        try {
+          if (originalCurve && originalPolynomial) {
+            originalCurve.Y = (tilt: number) => originalPolynomial.eval(tilt)
+            originalCurve.updateCurve()
+          }
+          if (correctedCurve && correctedPolynomial) {
+            correctedCurve.Y = (tilt: number) => correctedPolynomial.eval(tilt)
+            correctedCurve.updateCurve()
+          }
+          if (originalGravity) {
+            const tilt = findTiltForGravity(originalPolynomial, originalGravity)
+            originalOGPoint.moveTo([tilt, originalGravity])
+            correctedPolynomial && correctedOGPoint.moveTo([tilt, correctedPolynomial.eval(tilt)])
+          }
+          if (finalGravity) {
+            const tilt = findTiltForGravity(originalPolynomial, finalGravity)
+            originalFGPoint.moveTo([tilt, finalGravity])
+            correctedPolynomial && correctedFGPoint.moveTo([tilt, correctedPolynomial.eval(tilt)])
+          }
           board.update()
+          board.unsuspendUpdate()
+        } catch (error) {
+          // 🤷‍ we get an error on the first render doing board.update()
         }
-      } catch (error) {
-        // 🤷‍ we get an error on the first render doing board.update()
       }
     }, [
       board, originalPolynomial, correctedPolynomial, originalCurve, correctedCurve, originalGravity, finalGravity,
