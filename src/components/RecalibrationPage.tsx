@@ -123,7 +123,7 @@ const RecalibrationForm: FC<IProps> = ({onChangeOriginalPolynomial, onChangeCorr
               value={correctedFormula || 'Modified tilt formula will appear here'}
             />
             <Button disabled={copied || !valid} onClick={async () => {
-              await navigator.clipboard.writeText(DEFAULT_FORMULA)
+              await navigator.clipboard.writeText(correctedFormula)
               setCopied(true)
             }}>{copied ? 'Copied' : 'Copy'}</Button>
           </InputGroup>
